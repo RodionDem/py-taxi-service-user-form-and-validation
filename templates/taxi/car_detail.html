@@ -1,17 +1,18 @@
 {% extends "base.html" %}
 
 {% block content %}
-
 <h1>
   {{ car.model }}
 
-  <a href="{% url 'taxi:car-delete' pk=car.id %}"
-     class="btn btn-danger link-to-page">
+  <a href="{% url 'taxi:car-delete' pk=car.id %}" class="btn btn-danger link-to-page">
     Delete
   </a>
 
-  <a href="{% url 'taxi:car-update' pk=car.id %}"
-     class="btn btn-secondary link-to-page">
+  <a href="javascript:history.back()" class="btn btn-secondary link-to-page">
+    Cancel
+  </a>
+
+  <a href="{% url 'taxi:car-update' pk=car.id %}" class="btn btn-secondary link-to-page">
     Update
   </a>
 </h1>
@@ -23,23 +24,16 @@
 </p>
 
 {% if user in car.drivers.all %}
-
-  <a href="{% url 'taxi:car-remove' car.id %}"
-     class="btn btn-danger mb-3">
+  <a href="{% url 'taxi:car-remove' car.id %}" class="btn btn-danger mb-3">
     Delete me from this car
   </a>
-
 {% else %}
-
-  <a href="{% url 'taxi:car-assign' car.id %}"
-     class="btn btn-success mb-3">
+  <a href="{% url 'taxi:car-assign' car.id %}" class="btn btn-success mb-3">
     Assign me to this car
   </a>
-
 {% endif %}
 
 <h2>Drivers</h2>
-
 <hr>
 
 <ul>
@@ -50,5 +44,4 @@
     </li>
   {% endfor %}
 </ul>
-
 {% endblock %}
